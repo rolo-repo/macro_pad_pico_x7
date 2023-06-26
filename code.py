@@ -177,6 +177,13 @@ encoder_handler.map = [((KC.VOLU, KC.VOLD),(KC.MW_UP, KC.MW_DN)),
 _____ = KC.NO
 
 ALT_TAB = KC.SM(kc=KC.TAB, mod=KC.LALT)
+#intelij
+CTRL_TAB = KC.SM(kc=KC.TAB, mod=KC.LCTRL)
+
+NAV_PREV = KC.LCTRL(KC.LALT(KC.LEFT))
+NAV_NEXT = KC.LCTRL(KC.LALT(KC.RIGHT))
+
+RECENT_OPEN_FILES   =  KC.LCTRL(KC.E)
 
 LOCK = KC.LWIN(KC.L)
 
@@ -187,6 +194,8 @@ COMPILE = KC.LCTRL(KC.LSHIFT(KC.F9))
 MIN_ALL = KC.LWIN(KC.M)
 
 SNIP_TOOL = KC.LWIN(KC.LSFT(KC.S))
+
+OPEN_CHROME = KC.RCTRL(KC.C)
 
 TO_LAYER2 = KC.TO(1)
 TO_LAYER1 = KC.TO(0)
@@ -199,21 +208,22 @@ TO_LAYER1.before_press_handler(lambda *args: leds_handler.all(LED_OFF) and  leds
 MIN_ALL_SW_L2 = KC.HT(MIN_ALL , TO_LAYER2 )
 MIN_ALL_SW_L1 = KC.HT(MIN_ALL , TO_LAYER1 )
 
+
 #combos.combos = [ Chord( ( MIN_ALL , SNIP_TOOL ) , TO_LAYER2 , timeout=500, per_key_timeout=False, fast_reset=False )]
 
 keyboard.keymap = [
     #LAYER1
-    [       KC.MB_LMB,              _____,              KC.MB_RMB,
-            ALT_TAB,                _____,              KC.ENTER,
-            KC.A,                   _____,              SNIP_TOOL,
-            LOCK,                   MIN_ALL_SW_L2,      KC.B
+    [       KC.TRNS,              _____,              KC.TRNS,
+            ALT_TAB,              _____,              KC.ENTER,
+            CTRL_TAB,             _____,              OPEN_CHROME,
+            LOCK,                 MIN_ALL_SW_L2,      SNIP_TOOL
     ]
     ,
     #LAYER2
-    [       KC.TRNS,                _____,              KC.TRNS,
-            KC.A,                   _____,              KC.J,
-            KC.B,                   _____,              KC.F,
-            KC.C,                   MIN_ALL_SW_L1,      KC.D
+    [       KC.MB_LMB,            _____,            KC.MB_RMB ,
+            CTRL_TAB,             _____,            KC.TRNS,
+            NAV_PREV,             _____,            NAV_NEXT,
+            RECENT_OPEN_FILES,    MIN_ALL_SW_L1,    SNIP_TOOL
      ]
 ]
 
