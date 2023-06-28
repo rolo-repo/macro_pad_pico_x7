@@ -172,8 +172,16 @@ encoder_handler.pins = (
     (board.GP9, board.GP10, None),  # encoder #2
 )
 
-encoder_handler.map = [((KC.VOLU, KC.VOLD),(KC.MW_UP, KC.MW_DN)),
-                       ((KC.VOLU, KC.VOLD),(KC.MW_UP, KC.MW_DN))]  # Standard
+Zoom_in = KC.LCTRL(KC.EQUAL)
+Zoom_out = KC.LCTRL(KC.MINUS)
+
+encoder_handler.map = [(
+                            (KC.VOLU, KC.VOLD),     (KC.MW_UP, KC.MW_DN)        #Layer 1
+                        ),
+                        (
+                            (Zoom_in, Zoom_out),    (KC.LED_INC, KC.LED_DEC)    #Layer 2
+                        ),
+]  # Standard
 _____ = KC.NO
 
 ALT_TAB = KC.SM(kc=KC.TAB, mod=KC.LALT)
